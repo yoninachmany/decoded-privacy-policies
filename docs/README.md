@@ -11,12 +11,12 @@ When signing up for a product or service, people often agree to ridiculous thing
 
 We've gathered privacy policies from several large tech companies (namely Apple, Craigslist, Google, Instagram, The New York Times, and Twitter), which can be found on their websites:
 
-http://www.apple.com/privacy/privacy-policy/
-https://www.craigslist.org/about/privacy.policy 
-https://www.google.com/policies/privacy/
-https://www.instagram.com/about/legal/privacy/ 
-http://www.nytimes.com/content/help/rights/privacy/policy/privacy-policy.html
-https://twitter.com/privacy?lang=en
+* http://www.apple.com/privacy/privacy-policy/
+* https://www.craigslist.org/about/privacy.policy 
+* https://www.google.com/policies/privacy/
+* https://www.instagram.com/about/legal/privacy/ 
+* http://www.nytimes.com/content/help/rights/privacy/policy/privacy-policy.html
+* https://twitter.com/privacy?lang=en
 
 We've uploaded these policies in text form for parsing and in pdf form for display reference in https://github.com/yoninachmany/decoded-privacy-policies/tree/master/data/rawInput
 
@@ -43,7 +43,9 @@ The clarity and brevity of our instructions and task are key to allowing workers
 
 Once we decided to have workers search for answers to the questions above in each policy chunk, we tried two different HIT formats (with different forms of quality control embedded). We attempted to make the tasks as simple as possible for workers, in order to motivate them to actually do the HIT (rather than spam us). Our first HIT design (seen in screenshots ______) included buttons to note "Yes", "No", "It is not mentioned in this text", and "I can't tell" for each question, but we found that this made it too easy for workers the ability to just click the same answer to answer every question (i.e. "Yes" to every one). 
 
-The output from the HIT are two data (report) files downloaded from Crowdflower, which serve as the results yielded from workers selected using quality control methods.
+We adapted this design by creating a HIT with simple checkboxes next to each question, instructing workers to check the questions that are addressed in the text provided. As a means of quality control, we also included a required question at the end asking users to check "Yes" if the text addressed any of the questions and they checked them accordingly, or "No" if the text didn't address any of the questions, and they left all questions unchecked. (This allowed us to immediately throw out any data that checked some of the questions, but noted "No" for this final question. 
+
+For the QC module output, we've uploaded the two CrowdFlower data (report) files from these two HITs, which show the results we got from workers.
 
 Our quality control methods overlap highlight with aggregation, which will be explained more in-depth below.
 
