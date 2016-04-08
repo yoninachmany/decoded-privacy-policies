@@ -43,7 +43,7 @@ The clarity and brevity of our instructions and task are key to allowing workers
 
 Once we decided to have workers search for answers to the questions above in each policy chunk, we tried two different HIT formats, with different forms of quality control embedded. We attempted to make the tasks as simple as possible for workers, in order to motivate them to actually do the HIT (rather than spam us). Our first HIT design (seen in docs/screenshots/newDesign1-radioButtons) included buttons to note "Yes", "No", "It is not mentioned in this text", and "I can't tell" for each question, but we found that this made it too easy for workers the ability to just click the same answer to answer every question (i.e. "Yes" to every one). 
 
-We adapted this design by creating a new HIT design with simple checkboxes next to each question (seen in docs/screenshots/newDesign2-checkboxes), instructing workers to check the questions that are addressed in the text provided. As a means of quality control, we also included a required question at the end asking users to check "Yes" if the text addressed any of the questions and they checked them accordingly, or "No" if the text didn't address any of the questions, and they left all questions unchecked. (This allowed us to immediately throw out any data that checked some of the questions, but noted "No" for this final question). 
+We adapted this design by creating a new HIT design with simple checkboxes next to each question (seen in docs/screenshots/newDesign2-checkboxes), instructing workers to check the questions that are addressed in the text provided. As a means of quality control, we also included a required question at the end asking users to check "Yes" if the text addressed any of the questions and they checked them accordingly, or "No" if the text didn't address any of the questions, and they left all questions unchecked. (This allowed us to immediately throw out any data that checked some of the questions, yet noted "No" for this final question). 
 
 For the QC module output, we've uploaded the two CrowdFlower data (report) files from these two HITs, which show the results we got from workers. HIT Design 2 is the one we've chosen to use moving forward.
 
@@ -96,7 +96,7 @@ Given final CrowdFlower data from workers, the code above will layer the attribu
 ## Q&A for reference
 **Who will be the members of your crowd?**
 
-This project will use Crowdflower workers to decode what our chosen policies are actually saying by breaking up each policy into segments and having each section summarized by a set of workers, after which another group of workers will determine which of those summaries best encapsulates the content of the section.
+This project will use Crowdflower workers to decode our chosen privacy policies by asking them to read small sections of a policy, and check a box next to any of our questions of interest that the section answers.
 
 **How will you incentivize them to participate?**
 
@@ -104,23 +104,18 @@ We will pay these workers a small sum to participate. There may be a small amoun
 
 **What will they provide, and what sort of skills do they need?**
 
-Turkers will help us determine the main point of a small section of a privacy policy. They will need to speak english and have sufficient analytical and reading comprehension skills to understand what is being stated in the policy. (easier said than done- many policies are primarily written in legal-ese!)
+Turkers will help us determine the main point of a small section of a privacy policy. They will need to speak English and have sufficient analytical and reading comprehension skills to understand what is being stated in the policy. (easier said than done- many policies are primarily written in legal-ese!)
 
 **How will you ensure the quality of the crowd provides? How will you aggregate the results from the crowd?**
 
-We will ultimately create an online resource that posts our crowdsourced summary alongside the original privacy policy, to provide consumers with the knowledge of what they’re signing when they hit “Agree”.
+We will have multiple layers of quality control embedded in our HIT and methods of aggregation - we will have 10 workers "decode" each chunk of policy and use a majority vote system based on the boxes they check to determine which questions are actually answered. We'll have each worker answer gold standard questions as well, and throw out any spammers (those who check all the boxes, etc). 
 
-**Describe each of the steps involved in your process. What parts will be done by the crowd, and what parts will be done automatically.**
-
-1. We’ll first have to divide up the privacy policy into different sections, ensuring that the divisions occur at logical breaks in the policy. We will do this manually. 
-2. We will then survey Crowdflower workers and ask them multiple choice questions about the content of the privacy policy. These hits will be run with built in gold-standard questions and have 10 responses per section. 
-3. Finally, we will add together the summaries for each section and run a majority voiting analysis to determine the accuracy of the workers output. We will rerun sections that have a 50/50 tie. 
+To aggregate the data, we will write a program to combine the questions our workers reported were answered for each chunk to form a list of questions that the entire policy answers, as well as the associated chunks text where those questions were addressed. 
 
 **How will you evaluate if your project is successful?**
 
-This project will be successful if we can get Turkers to reliably interpret and summarize the meaning of sections of these privacy policies, and if we are further able to combine these summaries into a useful resource for consumers.
+This project will be successful if we can get Turkers to reliably interpret the meaning each section of these privacy policies, and if we can coherently combine the data from each chunk into a larger resource that notes the ways that companies are actually using consumer data.
 
 **What potential problems do you foresee when implementing your project?**
 
-We might encounter issues if workers are unable to truly understand the legal language that is used in many of these privacy policies, and thus are unable to label the paragraphs accurately. 
-Provide a link to your Vimeo video *
+We might encounter issues if workers are unable to truly understand the legal language that is used in many of these privacy policies, and thus are unable to label the paragraphs accurately.
