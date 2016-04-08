@@ -33,20 +33,38 @@ HIT design is also part of QC, as the clarity and brevity of our instructions an
 * Can they access other data on your phone without your permission?
 * If you delete your account, is your data deleted?
 
+Such a structure also paves the way for clearly-defined quality control questions to filter workers as good or bad.
+
 The output from the HIT are two data (report) files downloaded from Crowdflower, which serve as the results yielded from workers selected using quality control methods.
 
 Our quality control methods overlap highlight with aggregation, which will be explained more in-depth below.
 
 **Sample input/output from your aggregation module (2)**
 
-The sample input for aggregation comes from the sample output for quality control, which is the 
-Several descriptions for a section of the Privacy Policy will be compared,
-and one will be chosen by majority vote. Then, the results for sections will be concatenated in linear order for the final result.
+The sample input for aggregation comes from the sample output for quality control, which is the data report from Crowdflower, with information about paragraphs and worker quality. The output is achieved by running the aggregation code on the HIT output.
+
+The intersection between the modules is pretty high. In sum, here are the measures we are taking for successful quality control and aggregation:
+
+* Reading privacy policies on our own to understand the task better
+* Coming up with clear checklist items of things we expect to find in privacy policies
+* Gold standard questions with clear qualities marked
+* Choosing reasonable sized paragraphs from privacy policy document
+* Filtering workers who may participate on our HIT to be English speakers
+* Employing 10 workers on HITs and paying them $0.10 or more depending on our results
+* Using gold standard questions to assess worker quality (mostly done on crowdsourcing platform)
+* Playing with the HIT parameters (length of policy we give to read, number of attributes, number of chunks we have them each do, etc)
+* Potentially moving from Crowdflower to Mechanical Turk to get better results
 
 ## 2. /src (4 total)
 **Working QC module (2)**
 
-The initial approach for quality control is a simple majority for descriptions of sections of the document. The approach will be tested with a small trial that will identify the benefits and disadvantages of such an approach. Potential paths forward includes adding an additional pass to throw out bad answers that should not be voted on or iterative writing of descriptions.
+The initial approach for quality control was a simple majority for descriptions of sections of the document. The approach was to be tested with a small trial that would identify the benefits and disadvantages of such an approach. Potential paths forward included adding an additional pass to throw out bad answers that should not be voted on or iterative writing of descriptions.
+
+After meeting with our TA, we changed the design of the HIT, including the output format from each task, which was now purely voting on paragraph meaning using a pre-defined checklist. Therefore, quality control moving forward follows these steps:
+
+* For each chunk “decoded” by 10 workers, at least 6 have to agree on each checkbox for it to be considered valid
+* If 4-5 people label a chunk with a given checkbox, we check on it manually - don’t want automatically discount, but can’t be sure
+* If there is disagreement (many votes for several conflicting labels for a paragraph) we also give it a second pass
 
 **Working aggregation (2)**
 
