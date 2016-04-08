@@ -3,41 +3,51 @@
 
 ### The Problem
 
-When buying a product or service, people often agree to ridiculous things online, or even sign away rights they aren’t aware of, because they don’t take the time to read 20 page Privacy Policies. Generally, policies are much better reading material for lawyers than for the people they are supposed to inform. This project will give them the gist of what they are agreeing to, and hopefully incentivize companies to make their policies more clear to consumers.
+When signing up for a product or service, people often agree to ridiculous things online, or even sign away rights they aren’t aware of, because they don’t take the time to read long Privacy Policies. Generally, policies are much better reading material for lawyers than for the people they are supposed to inform. This project will give consumers the gist of what they are agreeing to, and hopefully incentivize companies to make their policies more clear to their users.
 
 
 ## 1. /data (5 total)
 **Raw data input (1)**
 
-Privacy policies will be gathered from several tech companies, which are easily available in machine-readable form e.g. http://www.apple.com/privacy/privacy-policy/
+We've gathered privacy policies from several large tech companies (namely Apple, Craigslist, Google, Instagram, The New York Times, and Twitter), which can be found on their websites:
 
-Right now, there are policies from Apple, Craigslist, Google, Instagram, Thew New York Times, and Twitter, in text form, for parsing and pdf form for display reference in https://github.com/yoninachmany/decoded-privacy-policies/tree/master/data/rawInput
+* http://www.apple.com/privacy/privacy-policy/
+* https://www.craigslist.org/about/privacy.policy 
+* https://www.google.com/policies/privacy/
+* https://www.instagram.com/about/legal/privacy/ 
+* http://www.nytimes.com/content/help/rights/privacy/policy/privacy-policy.html
+* https://twitter.com/privacy?lang=en
+
+We've uploaded these policies in text form for parsing and in pdf form for display reference in https://github.com/yoninachmany/decoded-privacy-policies/tree/master/data/rawInput
 
 **Sample input/output from QC module (2)**
 
-Though the raw data input consists of an entire privacy policy, the sample input from the quality control module that is shown in our repo is the materials for the HIT that was built on Crowdflower. In that respect, the sample input from the quality control module is the input to crowdworkers, who are selected using quality control methods. Those methods include requiring workers to be English speakers (to read English privacy policies), employing 10 workers for a HIT, and paying workers $0.10/HIT now (which seems like a more significant payment for a more cognitively challenging task, though we are willing to raise our payment if we believe it will be helpful).
+We've broken each policy into paragraph "chunks", and used these chunks as input to the quality control module (shown in our repo under data/rawInput). For this project, we've incorporated quality control in our CrowdFlower HIT as well as in our aggregation step, rather than doing a separate QC task. One of the most important parts of our project is a list of questions we compiled to have workers search for in each privacy policy. After reading quite a few privacy policies, we identified privacy and data use issues that consumers care about and that are addressed in many policies. These questions include: 
 
-HIT design is also part of QC, as the clarity and brevity of our instructions and task are key to allowing workers to perform better. Our original approach to the project was to have crowdworkers summarizing paragraphs of legal documents, which was overly ambitious and unwise, as getting useful output would be difficult, and the workflow for workers would not be very deterministic. We transitioned to a set of checklist items for workers to look for in paragraphs of privacy policies:
-
-* Will your data be used in advertising?
+* Will this company use your data in advertising?
 * Are they making money off the data?
+* Do they sell your data to trusted 3rd parties?
+* Do they sell your data to just anyone?
 * Do they sell geolocation data?
-* Do they sell demographic information? 
+* Do they sell demographic information?
 * Do you own the pictures you post?
 * Can you opt out of sections of the policy?
-* If so do you lose access to parts of the service
 * Can they track your search history outside of the service?
 * Is data provided to law enforcement?
-* Is sensitive financial data protected?
-* Is censorship allowed?
+* Is your sensitive financial data protected?
 * Can they access other data on your phone without your permission?
 * If you delete your account, is your data deleted?
+* Do they protect information about children?
 
-Such a structure also paves the way for clearly-defined quality control questions to filter workers as good or bad.
+The clarity and brevity of our instructions and task are key to allowing workers to perform better, so we went through several iterations of HIT designs before landing on our final design. Our original approach to the project was to have crowdworkers summarizing paragraphs of legal documents, but we realized this was overly ambitious and unwise- it was unlikely that the majority of workers would actually take the time to give us any useful output, and we had no way of screening these summaries for quality control. 
 
-The output from the HIT are two data (report) files downloaded from Crowdflower, which serve as the results yielded from workers selected using quality control methods.
+Once we decided to have workers search for answers to the questions above in each policy chunk, we tried two different HIT formats (with different forms of quality control embedded). We attempted to make the tasks as simple as possible for workers, in order to motivate them to actually do the HIT (rather than spam us). Our first HIT design (seen in docs/screenshots/newDesign1-radioButtons) included buttons to note "Yes", "No", "It is not mentioned in this text", and "I can't tell" for each question, but we found that this made it too easy for workers the ability to just click the same answer to answer every question (i.e. "Yes" to every one). 
 
-Our quality control methods overlap highlight with aggregation, which will be explained more in-depth below.
+We adapted this design by creating a new HIT design with simple checkboxes next to each question (seen in docs/screenshots/newDesign2-checkboxes), instructing workers to check the questions that are addressed in the text provided. As a means of quality control, we also included a required question at the end asking users to check "Yes" if the text addressed any of the questions and they checked them accordingly, or "No" if the text didn't address any of the questions, and they left all questions unchecked. (This allowed us to immediately throw out any data that checked some of the questions, but noted "No" for this final question). 
+
+For the QC module output, we've uploaded the two CrowdFlower data (report) files from these two HITs, which show the results we got from workers. HIT Design 2 is the one we've chosen to use moving forward.
+
+As we noted above, our quality control methods overlap with how we're aggregating our data, which will be explained more in-depth below.
 
 **Sample input/output from your aggregation module (2)**
 
@@ -58,13 +68,15 @@ The intersection between the modules is pretty high. In sum, here are the measur
 ## 2. /src (4 total)
 **Working QC module (2)**
 
-The initial approach for quality control was a simple majority for descriptions of sections of the document. The approach was to be tested with a small trial that would identify the benefits and disadvantages of such an approach. Potential paths forward included adding an additional pass to throw out bad answers that should not be voted on or iterative writing of descriptions.
+When we originally designed HITs that had workers summarize sections of privacy policies, our approach for quality control was to upload a 2nd round HIT that would use a simple majority vote to pick out the best of these summaries for each section. Potential paths forward included adding an additional pass to throw out bad answers that should not be voted on or iterative writing of descriptions.
 
-After meeting with our TA, we changed the design of the HIT, including the output format from each task, which was now purely voting on paragraph meaning using a pre-defined checklist. Therefore, quality control moving forward follows these steps:
+After meeting with our TA, we changed the design of the HIT (as described in detail above in "Sample input/output from QC module"), including the output format from each task, which was now purely voting on the content of given text using a pre-defined checklist of questions. Apart from the quality control we embedded in the actual HIT, quality control moving forward follows these steps:
 
+* Each chunk is seen by 10 workers, who check the boxes next to the questions that the text addresses. 
 * For each chunk “decoded” by 10 workers, at least 6 have to agree on each checkbox for it to be considered valid
-* If 4-5 people label a chunk with a given checkbox, we check on it manually - don’t want automatically discount, but can’t be sure
-* If there is disagreement (many votes for several conflicting labels for a paragraph) we also give it a second pass
+* If 4-5 people label a chunk with a given checkbox, we will check on it manually - don’t want automatically discount those 4-5 workers, but can’t be sure
+* If 3 or fewer workers agree on a checkbox, we assume that question isn't addressed in the chunk. 
+* If there is significant disagreement (many votes for several conflicting labels for a paragraph) we also give it a second pass
 
 **Working aggregation (2)**
 
@@ -82,11 +94,11 @@ Given simulated data, the appropriate descriptions for a section of the Privacy 
 ## Q&A for reference
 **Who will be the members of your crowd?**
 
-This project will use Mechanical Turk workers to decode what our chosen policies are actually saying by breaking up each policy into segments and having each section summarized by a set of workers, after which another group of workers will determine which of those summaries best encapsulates the content of the section.
+This project will use Crowdflower workers to decode what our chosen policies are actually saying by breaking up each policy into segments and having each section summarized by a set of workers, after which another group of workers will determine which of those summaries best encapsulates the content of the section.
 
 **How will you incentivize them to participate?**
 
-We will pay these workers a small sum to participate. There may be a small amount of intrinsic motivation involved as well; a lack of understanding of privacy policies is a problem that affects many internet users, and it’s possible that Turkers will feel that they’re contributing to a worthwhile cause.
+We will pay these workers a small sum to participate. There may be a small amount of intrinsic motivation involved as well; a lack of understanding of privacy policies is a problem that affects many internet users, and it’s possible that workers will feel that they’re contributing to a worthwhile cause.
 
 **What will they provide, and what sort of skills do they need?**
 
@@ -98,9 +110,9 @@ We will ultimately create an online resource that posts our crowdsourced summary
 
 **Describe each of the steps involved in your process. What parts will be done by the crowd, and what parts will be done automatically.**
 
-1. We’ll first have to divide up the privacy policy into different sections, ensuring that the divisions occur at logical breaks in the policy. We will use a machine to do this.
-2. We will then survey Mechanical Turk workers and ask them what they think the paragraphs mean. These hits will be run in an iterative process with built in gold-standard questions and multiple summaries written per section. We will encourage Turkers to be as clear and concise as possible in their summaries.
-3. Finally, we will add together the summaries for each section and post them onto Mechanical Turk, asking Turkers to mark similar concepts and further summarize the implications for this category. We’ll also build in quality control on this step to ensure that Turkers are writing summaries and voting conscientiously.
+1. We’ll first have to divide up the privacy policy into different sections, ensuring that the divisions occur at logical breaks in the policy. We will do this manually. 
+2. We will then survey Crowdflower workers and ask them multiple choice questions about the content of the privacy policy. These hits will be run with built in gold-standard questions and have 10 responses per section. 
+3. Finally, we will add together the summaries for each section and run a majority voiting analysis to determine the accuracy of the workers output. We will rerun sections that have a 50/50 tie. 
 
 **How will you evaluate if your project is successful?**
 
@@ -108,5 +120,5 @@ This project will be successful if we can get Turkers to reliably interpret and 
 
 **What potential problems do you foresee when implementing your project?**
 
-We might encounter issues if Turkers are unable to truly understand the legal language that is used in many of these privacy policies, and thus are unable to further explain it clearly to others. This may be problematic for accurately decoding the policies.
+We might encounter issues if workers are unable to truly understand the legal language that is used in many of these privacy policies, and thus are unable to label the paragraphs accurately. 
 Provide a link to your Vimeo video *
