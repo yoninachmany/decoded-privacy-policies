@@ -41,7 +41,7 @@ We've broken each policy into paragraph "chunks", and used these chunks as input
 
 The clarity and brevity of our instructions and task are key to allowing workers to perform better, so we went through several iterations of HIT designs before landing on our final design. Our original approach to the project was to have crowdworkers summarizing paragraphs of legal documents, but we realized this was overly ambitious and unwise- it was unlikely that the majority of workers would actually take the time to give us any useful output, and we had no way of screening these summaries for quality control. 
 
-Once we decided to have workers search for answers to the questions above in each policy chunk, we tried two different HIT formats (with different forms of quality control embedded). We attempted to make the tasks as simple as possible for workers, in order to motivate them to actually do the HIT (rather than spam us). Our first HIT design (seen in docs/screenshots/newDesign1-radioButtons) included buttons to note "Yes", "No", "It is not mentioned in this text", and "I can't tell" for each question, but we found that this made it too easy for workers the ability to just click the same answer to answer every question (i.e. "Yes" to every one). 
+Once we decided to have workers search for answers to the questions above in each policy chunk, we tried two different HIT formats, with different forms of quality control embedded. We attempted to make the tasks as simple as possible for workers, in order to motivate them to actually do the HIT (rather than spam us). Our first HIT design (seen in docs/screenshots/newDesign1-radioButtons) included buttons to note "Yes", "No", "It is not mentioned in this text", and "I can't tell" for each question, but we found that this made it too easy for workers the ability to just click the same answer to answer every question (i.e. "Yes" to every one). 
 
 We adapted this design by creating a new HIT design with simple checkboxes next to each question (seen in docs/screenshots/newDesign2-checkboxes), instructing workers to check the questions that are addressed in the text provided. As a means of quality control, we also included a required question at the end asking users to check "Yes" if the text addressed any of the questions and they checked them accordingly, or "No" if the text didn't address any of the questions, and they left all questions unchecked. (This allowed us to immediately throw out any data that checked some of the questions, but noted "No" for this final question). 
 
@@ -55,15 +55,14 @@ The sample input for aggregation comes from the sample output for quality contro
 
 The intersection between the modules is pretty high. In sum, here are the measures we are taking for successful quality control and aggregation:
 
-* Reading privacy policies on our own to understand the task better
+* Reading privacy policies on our own to understand the what questions an ideal policy would answer
 * Coming up with clear checklist items of things we expect to find in privacy policies
 * Gold standard questions with clear qualities marked
-* Choosing reasonable sized paragraphs from privacy policy document
-* Filtering workers who may participate on our HIT to be English speakers
-* Employing 10 workers on HITs and paying them $0.10 or more depending on our results
+* Choosing reasonable sized paragraph "chunks" from each privacy policy document
+* Only allowing English speaking workers to participate in our HIT 
+* Employing 10 workers on HITs and paying them $0.10 (the exact amount may change, depending on our results)
 * Using gold standard questions to assess worker quality (mostly done on crowdsourcing platform)
 * Playing with the HIT parameters (length of policy we give to read, number of attributes, number of chunks we have them each do, etc)
-* Potentially moving from Crowdflower to Mechanical Turk to get better results
 
 ## 2. /src (4 total)
 **Working QC module (2)**
