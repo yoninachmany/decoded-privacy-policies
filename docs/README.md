@@ -15,11 +15,11 @@ Right now, there are policies from Apple, Craigslist, Google, Instagram, Thew Ne
 
 **Sample input/output from QC module (2)**
 
-The input will be an entire privacy policy, or a significant subsection that we determine.
+Though the raw data input consists of an entire privacy policy, the sample input from the quality control module that is shown in our repo is the materials for the HIT that was built on Crowdflower. In that respect, the sample input from the quality control module is the input to crowdworkers, who are selected using quality control methods. Those methods include requiring workers to be English speakers (to read English privacy policies), employing 10 workers for a HIT, and paying workers $0.10/HIT now (which seems like a more significant payment for a more cognitively challenging task, though we are willing to raise our payment if we believe it will be helpful).
 
-The output will be shorter than the original policy and will consist of high-level explanations of different sections of the T&C.
+The output from the HIT are two data (report) files downloaded from Crowdflower, which serve as the results yielded from workers selected using quality control methods.
 
-A building block for our expected output comes from Genius, the annotation website, which has some annotations for the iTunes policy document: http://genius.com/1126348.
+Our quality control methods overlap highlight with aggregation, which will be explained more in-depth below.
 
 **Sample input/output from your aggregation module (2)**
 
