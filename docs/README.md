@@ -89,11 +89,11 @@ Given simulated data, the appropriate descriptions for a section of the Privacy 
 ## Q&A for reference
 **Who will be the members of your crowd?**
 
-This project will use Mechanical Turk workers to decode what our chosen policies are actually saying by breaking up each policy into segments and having each section summarized by a set of workers, after which another group of workers will determine which of those summaries best encapsulates the content of the section.
+This project will use Crowdflower workers to decode what our chosen policies are actually saying by breaking up each policy into segments and having each section summarized by a set of workers, after which another group of workers will determine which of those summaries best encapsulates the content of the section.
 
 **How will you incentivize them to participate?**
 
-We will pay these workers a small sum to participate. There may be a small amount of intrinsic motivation involved as well; a lack of understanding of privacy policies is a problem that affects many internet users, and it’s possible that Turkers will feel that they’re contributing to a worthwhile cause.
+We will pay these workers a small sum to participate. There may be a small amount of intrinsic motivation involved as well; a lack of understanding of privacy policies is a problem that affects many internet users, and it’s possible that workers will feel that they’re contributing to a worthwhile cause.
 
 **What will they provide, and what sort of skills do they need?**
 
@@ -105,9 +105,9 @@ We will ultimately create an online resource that posts our crowdsourced summary
 
 **Describe each of the steps involved in your process. What parts will be done by the crowd, and what parts will be done automatically.**
 
-1. We’ll first have to divide up the privacy policy into different sections, ensuring that the divisions occur at logical breaks in the policy. We will use a machine to do this.
-2. We will then survey Mechanical Turk workers and ask them what they think the paragraphs mean. These hits will be run in an iterative process with built in gold-standard questions and multiple summaries written per section. We will encourage Turkers to be as clear and concise as possible in their summaries.
-3. Finally, we will add together the summaries for each section and post them onto Mechanical Turk, asking Turkers to mark similar concepts and further summarize the implications for this category. We’ll also build in quality control on this step to ensure that Turkers are writing summaries and voting conscientiously.
+1. We’ll first have to divide up the privacy policy into different sections, ensuring that the divisions occur at logical breaks in the policy. We will do this manually. 
+2. We will then survey Crowdflower workers and ask them multiple choice questions about the content of the privacy policy. These hits will be run with built in gold-standard questions and have 10 responses per section. 
+3. Finally, we will add together the summaries for each section and run a majority voiting analysis to determine the accuracy of the workers output. We will rerun sections that have a 50/50 tie. 
 
 **How will you evaluate if your project is successful?**
 
@@ -115,5 +115,5 @@ This project will be successful if we can get Turkers to reliably interpret and 
 
 **What potential problems do you foresee when implementing your project?**
 
-We might encounter issues if Turkers are unable to truly understand the legal language that is used in many of these privacy policies, and thus are unable to further explain it clearly to others. This may be problematic for accurately decoding the policies.
+We might encounter issues if workers are unable to truly understand the legal language that is used in many of these privacy policies, and thus are unable to label the paragraphs accurately. 
 Provide a link to your Vimeo video *
