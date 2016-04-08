@@ -22,25 +22,25 @@ We've uploaded these policies in text form for parsing and in pdf form for displ
 
 **Sample input/output from QC module (2)**
 
-Though the raw data input consists of an entire privacy policy, the sample input from the quality control module that is shown in our repo is the materials for the HIT that was built on Crowdflower. In that respect, the sample input from the quality control module is the input to crowdworkers, who are selected using quality control methods. Those methods include requiring workers to be English speakers (to read English privacy policies), employing 10 workers for a HIT, and paying workers $0.10/HIT now (which seems like a more significant payment for a more cognitively challenging task, though we are willing to raise our payment if we believe it will be helpful).
+We've broken each policy into paragraph "chunks", and used these chunks as input to the quality control module (shown in our repo under ___). For this project, we've incorporated quality control in our CrowdFlower HIT as well as in our aggregation step, rather than doing a separate QC task. One of the most important parts of our project is a list of questions we compiled to have workers search for in each privacy policy. After reading quite a few privacy policies, we identified privacy and data use issues that consumers care about and that are addressed in many policies. These questions include: 
+Will this company use your data in advertising?
+Are they making money off the data?
+Do they sell your data to trusted 3rd parties?
+Do they sell your data to just anyone?
+Do they sell geolocation data?
+Do they sell demographic information?
+Do you own the pictures you post?
+Can you opt out of sections of the policy?
+Can they track your search history outside of the service?
+Is data provided to law enforcement?
+Is your sensitive financial data protected?
+Can they access other data on your phone without your permission?
+If you delete your account, is your data deleted?
+Do they protect information about children?
 
-HIT design is also part of QC, as the clarity and brevity of our instructions and task are key to allowing workers to perform better. Our original approach to the project was to have crowdworkers summarizing paragraphs of legal documents, which was overly ambitious and unwise, as getting useful output would be difficult, and the workflow for workers would not be very deterministic. We transitioned to a set of checklist items for workers to look for in paragraphs of privacy policies:
+The clarity and brevity of our instructions and task are key to allowing workers to perform better, so we went through several iterations of HIT designs before landing on our final design. Our original approach to the project was to have crowdworkers summarizing paragraphs of legal documents, but we realized this was overly ambitious and unwise- it was unlikely that the majority of workers would actually take the time to give us any useful output, and we had no way of screening these summaries for quality control. 
 
-* Will your data be used in advertising?
-* Are they making money off the data?
-* Do they sell geolocation data?
-* Do they sell demographic information? 
-* Do you own the pictures you post?
-* Can you opt out of sections of the policy?
-* If so do you lose access to parts of the service
-* Can they track your search history outside of the service?
-* Is data provided to law enforcement?
-* Is sensitive financial data protected?
-* Is censorship allowed?
-* Can they access other data on your phone without your permission?
-* If you delete your account, is your data deleted?
-
-Such a structure also paves the way for clearly-defined quality control questions to filter workers as good or bad.
+Once we decided to have workers search for answers to the questions above in each policy chunk, we tried two different HIT formats (with different forms of quality control embedded). We attempted to make the tasks as simple as possible for workers, in order to motivate them to actually do the HIT (rather than spam us). Our first HIT design (seen in screenshots ______) included buttons to note "Yes", "No", "It is not mentioned in this text", and "I can't tell" for each question, but we found that this made it too easy for workers the ability to just click the same answer to answer every question (i.e. "Yes" to every one). 
 
 The output from the HIT are two data (report) files downloaded from Crowdflower, which serve as the results yielded from workers selected using quality control methods.
 
