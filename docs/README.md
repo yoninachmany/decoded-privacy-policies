@@ -12,7 +12,6 @@ When signing up for a product or service, people often agree to ridiculous thing
 We've gathered privacy policies from several large tech companies (namely Apple, Craigslist, Google, Instagram, The New York Times, and Twitter), which can be found on their websites:
 
 http://www.apple.com/privacy/privacy-policy/
-
 https://www.craigslist.org/about/privacy.policy 
 https://www.google.com/policies/privacy/
 https://www.instagram.com/about/legal/privacy/ 
