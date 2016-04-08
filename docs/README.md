@@ -17,12 +17,29 @@ Right now, there are policies from Apple, Craigslist, Google, Instagram, Thew Ne
 
 Though the raw data input consists of an entire privacy policy, the sample input from the quality control module that is shown in our repo is the materials for the HIT that was built on Crowdflower. In that respect, the sample input from the quality control module is the input to crowdworkers, who are selected using quality control methods. Those methods include requiring workers to be English speakers (to read English privacy policies), employing 10 workers for a HIT, and paying workers $0.10/HIT now (which seems like a more significant payment for a more cognitively challenging task, though we are willing to raise our payment if we believe it will be helpful).
 
+HIT design is also part of QC, as the clarity and brevity of our instructions and task are key to allowing workers to perform better. Our original approach to the project was to have crowdworkers summarizing paragraphs of legal documents, which was overly ambitious and unwise, as getting useful output would be difficult, and the workflow for workers would not be very deterministic. We transitioned to a set of checklist items for workers to look for in paragraphs of privacy policies:
+
+* Will your data be used in advertising?
+* Are they making money off the data?
+* Do they sell geolocation data?
+* Do they sell demographic information? 
+* Do you own the pictures you post?
+* Can you opt out of sections of the policy?
+* If so do you lose access to parts of the service
+* Can they track your search history outside of the service?
+* Is data provided to law enforcement?
+* Is sensitive financial data protected?
+* Is censorship allowed?
+* Can they access other data on your phone without your permission?
+* If you delete your account, is your data deleted?
+
 The output from the HIT are two data (report) files downloaded from Crowdflower, which serve as the results yielded from workers selected using quality control methods.
 
 Our quality control methods overlap highlight with aggregation, which will be explained more in-depth below.
 
 **Sample input/output from your aggregation module (2)**
 
+The sample input for aggregation comes from the sample output for quality control, which is the 
 Several descriptions for a section of the Privacy Policy will be compared,
 and one will be chosen by majority vote. Then, the results for sections will be concatenated in linear order for the final result.
 
