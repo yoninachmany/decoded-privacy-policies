@@ -84,13 +84,14 @@ Running `python src/qcAndAggregation/qcAndAggregation.py` will recreate `data/qc
 Given final CrowdFlower data from workers, the code above will layer the attributes (boxes checked) for each paragraph chunk of each policy together, in order to determine which questions the policy answers in total. Our output will be a list of questions each policy addresses, and links to different paragraphs of original policy for reference (the text where each question is actually answered). In the final version, more work may be required to clean and parse simulated data, but we think the quality control we implement in each step will go a long way to make this final aggregation step fairly straightforward. 
 
 ## 3. HIT Prototype (8 total)
-* Privacy Policies documents will need to be chunked before inserting them into HITs to ensure logical breaks. (1)
-* Price, redundancy, and potential gold standard data will need to be determined. Crowd will need to speak English and may have comprehension tested. (1)
-* Crowd touches data by reading small chunks of Privacy Policies and translating into high-level explanation, potentially in an iterative manner. (4)
+* Input: Privacy Policies documents manually chunked before inserting them into HITs to ensure logical breaks. (1)
+* Create list of questions (i.e., questions an ideal privacy policy would answer) for workers to search for in each policy (1)
+* Price, redundancy, and gold standard data will be determined. Crowd will need to speak English, do the gold standard tasks correctly, and pass internal HIT QC (check "Yes" if did check boxes, "No" if not) in final checkbox HIT design. (1)
+* Crowd touches data by reading small chunks of Privacy Policies and checking boxes next to the questions the text addresses. (3)
 * A small trial will be run to analyze the quality of a simple majority approach and refine the design iteratively. (2)
 
 ## 4. Online Resource (3 total)
-* Ultimately, the project will result in an online resource that posts crowdsourced summaries alongside original Privacy policies, to provide consumers with the knowledge of what they’re signing when they agree to use services. (3)
+* Ultimately, the project will result in an online resource that shows the qualities of each privacy policy (shows if they use your data in advertising, if they protect sensitive financial information, etc), and links to sections of the actual policy where we found this information. This will go a long way in quickly helping users understand what they’re signing when they agree to use services, without them having to read the entire policy. We'll also be able to compare the policies of companies to each other, adding a further level of utility to this model. (3)
 
 ## Q&A for reference
 **Who will be the members of your crowd?**
