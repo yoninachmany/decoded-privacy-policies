@@ -78,6 +78,8 @@ After meeting with our TA, we changed the design of the HIT (as described in det
 * If 3 or fewer workers agree on a checkbox, we assume that question isn't addressed in the chunk. 
 * If there is significant disagreement (many votes for several conflicting labels for a paragraph) we also give it a second pass
 
+Running `python src/qc/qc.py` will recreate `data/qc/output.csv`
+
 **Working aggregation (2)**
 
 Given simulated data, the appropriate descriptions for a section of the Privacy Policy will be chosen and then a final version of the output will be created by appending descriptions in the order of the original sections. In the final version, more work may be required to clean and parse simulated data.
