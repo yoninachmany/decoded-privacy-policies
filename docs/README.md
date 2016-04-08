@@ -81,7 +81,7 @@ Running `python src/qcAndAggregation/qcAndAggregation.py` will recreate `data/qc
 
 **Working aggregation (2)**
 
-Given simulated data, the appropriate descriptions for a section of the Privacy Policy will be chosen and then a final version of the output will be created by appending descriptions in the order of the original sections. In the final version, more work may be required to clean and parse simulated data.
+Given final CrowdFlower data from workers, the code above will layer the attributes (boxes checked) for each paragraph chunk of each policy together, in order to determine which questions the policy answers in total. Our output will be a list of questions each policy addresses, and links to different paragraphs of original policy for reference (the text where each question is actually answered). In the final version, more work may be required to clean and parse simulated data, but we think the quality control we implement in each step will go a long way to make this final aggregation step fairly straightforward. 
 
 ## 3. HIT Prototype (8 total)
 * Privacy Policies documents will need to be chunked before inserting them into HITs to ensure logical breaks. (1)
