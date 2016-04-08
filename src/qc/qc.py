@@ -1,4 +1,5 @@
 import csv
+import operator
 with open('data/qc/f893743.csv') as csvfile:
     reader = csv.DictReader(csvfile)
     paraVoteMap = {}
@@ -35,4 +36,22 @@ with open('data/qc/f893743.csv') as csvfile:
             for question in questions:
                 vote = row[question]
                 paraVoteMap[row['text']][question][vote] += 1
-    print paraVoteMap
+
+    with open('data/qc/output.csv', 'w') as csvfile:
+        fieldnames = questions[:]
+        fieldnames.append('paragraph')
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+
+        for entry in paraVoteMap:
+            data = {}
+            data['paragraph'] = entry
+            for question in questions:
+                # print question
+                o = paraVoteMap[entry][question]
+                o['vote'] = max(o.iteritems(), key=operator.itemgetter(1))[0]
+                data[question] = o['vote']
+                # print data
+
+                writer.writerow(data)
