@@ -77,7 +77,7 @@ After meeting with our TA, we changed the design of the HIT (as described in det
 * If 3 or fewer workers agree on a checkbox, we assume that question isn't addressed in the chunk. 
 * If there is significant disagreement (many votes for several conflicting labels for a paragraph) we also give it a second pass
 
-Running `python src/qcAndAggregation/qcAndAggregation.py` will recreate `data/qc/output.csv`
+Running `python src/qcAndAggregation/qcAndAggregation.py` will recreate `data/qcAndAggregation/output.csv`
 
 **Working aggregation (2)**
 
