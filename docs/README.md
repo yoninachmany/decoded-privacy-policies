@@ -3,15 +3,21 @@
 
 ### The Problem
 
-When buying a product or service, people often agree to ridiculous things online, or even sign away rights they aren’t aware of, because they don’t take the time to read 20 page Privacy Policies. Generally, policies are much better reading material for lawyers than for the people they are supposed to inform. This project will give them the gist of what they are agreeing to, and hopefully incentivize companies to make their policies more clear to consumers.
+When signing up for a product or service, people often agree to ridiculous things online, or even sign away rights they aren’t aware of, because they don’t take the time to read long Privacy Policies. Generally, policies are much better reading material for lawyers than for the people they are supposed to inform. This project will give consumers the gist of what they are agreeing to, and hopefully incentivize companies to make their policies more clear to their users.
 
 
 ## 1. /data (5 total)
 **Raw data input (1)**
 
-Privacy policies will be gathered from several tech companies, which are easily available in machine-readable form e.g. http://www.apple.com/privacy/privacy-policy/
+We've gathered privacy policies from several large tech companies (namely Apple, Craigslist, Google, Instagram, The New York Times, and Twitter), which can be found on their websites:
+http://www.apple.com/privacy/privacy-policy/
+https://www.craigslist.org/about/privacy.policy 
+https://www.google.com/policies/privacy/
+https://www.instagram.com/about/legal/privacy/ 
+http://www.nytimes.com/content/help/rights/privacy/policy/privacy-policy.html
+https://twitter.com/privacy?lang=en
 
-Right now, there are policies from Apple, Craigslist, Google, Instagram, Thew New York Times, and Twitter, in text form, for parsing and pdf form for display reference in https://github.com/yoninachmany/decoded-privacy-policies/tree/master/data/rawInput
+We've uploaded these policies in text form for parsing and in pdf form for display reference in https://github.com/yoninachmany/decoded-privacy-policies/tree/master/data/rawInput
 
 **Sample input/output from QC module (2)**
 
