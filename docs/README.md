@@ -11,6 +11,8 @@ When buying a product or service, people often agree to ridiculous things online
 
 Privacy policies will be gathered from several tech companies, which are easily available in machine-readable form e.g. http://www.apple.com/privacy/privacy-policy/
 
+Right now, there are policies from Apple, Craigslist, Google, Instagram, Thew New York Times, and Twitter, in text form, for parsing and pdf form for display reference in https://github.com/yoninachmany/decoded-privacy-policies/tree/master/data/rawInput
+
 **Sample input/output from QC module (2)**
 
 The input will be an entire privacy policy, or a significant subsection that we determine.
