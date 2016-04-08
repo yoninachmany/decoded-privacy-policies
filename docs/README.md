@@ -68,13 +68,15 @@ The intersection between the modules is pretty high. In sum, here are the measur
 ## 2. /src (4 total)
 **Working QC module (2)**
 
-The initial approach for quality control was a simple majority for descriptions of sections of the document. The approach was to be tested with a small trial that would identify the benefits and disadvantages of such an approach. Potential paths forward included adding an additional pass to throw out bad answers that should not be voted on or iterative writing of descriptions.
+When we originally designed HITs that had workers summarize sections of privacy policies, our approach for quality control was to upload a 2nd round HIT that would use a simple majority vote to pick out the best of these summaries for each section. Potential paths forward included adding an additional pass to throw out bad answers that should not be voted on or iterative writing of descriptions.
 
-After meeting with our TA, we changed the design of the HIT, including the output format from each task, which was now purely voting on paragraph meaning using a pre-defined checklist. Therefore, quality control moving forward follows these steps:
+After meeting with our TA, we changed the design of the HIT (as described in detail above in "Sample input/output from QC module"), including the output format from each task, which was now purely voting on the content of given text using a pre-defined checklist of questions. Apart from the quality control we embedded in the actual HIT, quality control moving forward follows these steps:
 
+* Each chunk is seen by 10 workers, who check the boxes next to the questions that the text addresses. 
 * For each chunk “decoded” by 10 workers, at least 6 have to agree on each checkbox for it to be considered valid
-* If 4-5 people label a chunk with a given checkbox, we check on it manually - don’t want automatically discount, but can’t be sure
-* If there is disagreement (many votes for several conflicting labels for a paragraph) we also give it a second pass
+* If 4-5 people label a chunk with a given checkbox, we will check on it manually - don’t want automatically discount those 4-5 workers, but can’t be sure
+* If 3 or fewer workers agree on a checkbox, we assume that question isn't addressed in the chunk. 
+* If there is significant disagreement (many votes for several conflicting labels for a paragraph) we also give it a second pass
 
 **Working aggregation (2)**
 
