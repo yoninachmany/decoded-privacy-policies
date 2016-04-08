@@ -43,11 +43,11 @@ The clarity and brevity of our instructions and task are key to allowing workers
 
 Once we decided to have workers search for answers to the questions above in each policy chunk, we tried two different HIT formats (with different forms of quality control embedded). We attempted to make the tasks as simple as possible for workers, in order to motivate them to actually do the HIT (rather than spam us). Our first HIT design (seen in screenshots ______) included buttons to note "Yes", "No", "It is not mentioned in this text", and "I can't tell" for each question, but we found that this made it too easy for workers the ability to just click the same answer to answer every question (i.e. "Yes" to every one). 
 
-We adapted this design by creating a HIT with simple checkboxes next to each question, instructing workers to check the questions that are addressed in the text provided. As a means of quality control, we also included a required question at the end asking users to check "Yes" if the text addressed any of the questions and they checked them accordingly, or "No" if the text didn't address any of the questions, and they left all questions unchecked. (This allowed us to immediately throw out any data that checked some of the questions, but noted "No" for this final question. 
+We adapted this design by creating a new HIT design with simple checkboxes next to each question (seen in screrenshots ___), instructing workers to check the questions that are addressed in the text provided. As a means of quality control, we also included a required question at the end asking users to check "Yes" if the text addressed any of the questions and they checked them accordingly, or "No" if the text didn't address any of the questions, and they left all questions unchecked. (This allowed us to immediately throw out any data that checked some of the questions, but noted "No" for this final question). 
 
-For the QC module output, we've uploaded the two CrowdFlower data (report) files from these two HITs, which show the results we got from workers.
+For the QC module output, we've uploaded the two CrowdFlower data (report) files from these two HITs, which show the results we got from workers. HIT Design 2 is the one we've chosen to use moving forward.
 
-Our quality control methods overlap highlight with aggregation, which will be explained more in-depth below.
+As we noted above, our quality control methods overlap with how we're aggregating our data, which will be explained more in-depth below.
 
 **Sample input/output from your aggregation module (2)**
 
