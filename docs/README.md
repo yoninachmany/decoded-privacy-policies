@@ -1,15 +1,6 @@
 # decoded-privacy-policies
 > Decoded uses crowdsourcing to analyze and outline the contents of the Privacy Polices of several popular companies to shed light on what consumers are actually agreeing to.
 
-## Table of Contents
-
-- [The Problem](### The Problem)
-- [1. /data (5 total)](## 1. /data (5 total))
-- [2. /src (4 total)](## 2. /src (4 total))
-- [3. HIT Prototype (8 total)](## 3. HIT Prototype (8 total))
-- [4. Online Resource (3 total)](## 4. Online Resource (3 total))
-- [Q&A for reference](## Q&A for reference)
-
 ### The Problem
 
 When signing up for a product or service, people often agree to ridiculous things online, or even sign away rights they aren’t aware of, because they don’t take the time to read long Privacy Policies. Generally, policies are much better reading material for lawyers than for the people they are supposed to inform. This project will give consumers the gist of what they are agreeing to, and hopefully incentivize companies to make their policies more clear to their users.
