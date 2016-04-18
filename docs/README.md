@@ -1,3 +1,13 @@
+**Table of Contents**
+
+- [decoded-privacy-policies](#)
+		- [The Problem](#)
+	- [1. /data (5 total)](#)
+	- [2. /src (4 total)](#)
+	- [3. HIT Prototype (8 total)](#)
+	- [4. Online Resource (3 total)](#)
+	- [Q&A for reference](#)
+
 # decoded-privacy-policies
 > Decoded uses crowdsourcing to analyze and outline the contents of the Privacy Polices of several popular companies to shed light on what consumers are actually agreeing to.
 
