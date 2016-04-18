@@ -19,12 +19,16 @@ questions=["are_they_making_money_off_the_data",
   "can_you_opt_out_of_sections_of_the_policy_gold",
   "did_the_text_address_any_of_the_above_questions_gold"]
 
+paragraphToCompanyMap = {}
+
 with open('data/qc/sampleInput/HITDesign2Report.csv') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         paragraph = row['text']
         if paragraph not in paragraphToQuestionsToVotesMap:
             paragraphToQuestionsToVotesMap[paragraph] = {}
+            company = row['company']
+            paragraphToCompanyMap[paragraph] = company
             for question in questions:
                 paragraphToQuestionsToVotesMap[paragraph][question] = 0
         else:
@@ -45,13 +49,13 @@ with open('data/qc/sampleInput/HITDesign2Report.csv') as csvfile:
 
 
 with open('data/qc/sampleOutput/paragraphToLabel.csv', 'w') as csvfile:
-    fieldnames = questions[:]
-    fieldnames.append('paragraph')
+    fieldnames = ['paragraph','company'] + questions
+
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
     writer.writeheader()
     for paragraph in paragraphToQuestionsToVotesMap:
-        row = {'paragraph': paragraph}
+        row = {'paragraph': paragraph, 'company': paragraphToCompanyMap[paragraph]}
         for question in questions:
             votes = paragraphToQuestionsToVotesMap[paragraph][question]
             if votes >= 6:
