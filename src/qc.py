@@ -22,7 +22,7 @@ questions=["are_they_making_money_off_the_data",
 
 paragraphToCompanyMap = {}
 
-with open('data/qc/realInput/4.27Full.csv') as csvfile:
+with open('analysis/data/qc/realInput/4.27Full.csv') as csvfile:
     reader = csv.DictReader(csvfile)
     numberOfCorrectlyCheckedBoxes = 0
     totalRows = 0
@@ -65,7 +65,7 @@ with open('data/qc/realInput/4.27Full.csv') as csvfile:
     print "Passed Quality Control #2: " + str(numberOfCorrectlyCheckedBoxes)
     print "Total Number of Responses: " + str(totalRows)
 
-with open('data/qc/realOutput/paragraphToVotes.csv', 'w') as csvfile:
+with open('analysis/data/qc/realOutput/paragraphToVotes.csv', 'w') as csvfile:
     fieldnames = ['paragraph', 'company'] + questions
 
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -78,7 +78,7 @@ with open('data/qc/realOutput/paragraphToVotes.csv', 'w') as csvfile:
 
         writer.writerow(row)
 
-with open('data/qc/realOutput/paragraphToLabel.csv', 'w') as csvfile:
+with open('analysis/data/qc/realOutput/paragraphToLabel.csv', 'w') as csvfile:
     fieldnames = ['paragraph','company'] + questions
 
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)

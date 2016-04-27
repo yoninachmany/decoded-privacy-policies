@@ -22,7 +22,7 @@ questions=["are_they_making_money_off_the_data",
 
 companyToQuestionToYesParagraphMap = {}
 
-with open('data/qc/realOutput/paragraphToLabel.csv') as csvfile:
+with open('analysis/data/qc/realOutput/paragraphToLabel.csv') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         company = row['company']
@@ -40,7 +40,7 @@ with open('data/qc/realOutput/paragraphToLabel.csv') as csvfile:
                 companyToQuestionsToResponsesMap[company][question] = "Yes"
                 companyToQuestionToYesParagraphMap[company][question] = paragraph
 
-with open('data/aggregation/realOutput/companyQuestionResponsesAndYesParagraphs.csv', 'w') as csvfile:
+with open('analysis/data/aggregation/realOutput/companyQuestionResponsesAndYesParagraphs.csv', 'w') as csvfile:
     fieldnames = ['company'] + questions
     for question in questions:
         newFieldname = question + "_yes_paragraph"
