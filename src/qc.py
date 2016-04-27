@@ -24,7 +24,10 @@ paragraphToCompanyMap = {}
 
 with open('data/qc/realInput/4.27Full.csv') as csvfile:
     reader = csv.DictReader(csvfile)
+    numberOfCorrectlyCheckedBoxes = 0
+    totalRows = 0
     for row in reader:
+        totalRows += 1
         paragraph = row['text']
         if paragraph not in paragraphToQuestionsToVotesMap:
             paragraphToQuestionsToVotesMap[paragraph] = {}
@@ -33,22 +36,47 @@ with open('data/qc/realInput/4.27Full.csv') as csvfile:
             for question in questions:
                 paragraphToQuestionsToVotesMap[paragraph][question] = 0
         else:
-            qcResponse = row['text_addresses_questions']
-            shouldBoxBeChecked = False
+            textAddressesQuestions = row['text_addresses_questions']
+            textDoesntAddressQuestions = row["text_doesnt_address_questions"]
+            if textAddressesQuestions == "true" and textDoesntAddressQuestions == "true":
+                continue
+
             isBoxChecked = False
+            shouldBoxBeChecked = False
+
+            if textAddressesQuestions == "true":
+                isBoxChecked = True
+
             for question in questions:
                 response = row[question]
-                if response is True:
-                    isBoxChecked = True
+                if response == "true":
+                    shouldBoxBeChecked = True
 
             if shouldBoxBeChecked is not isBoxChecked:
                 continue
+            else:
+                numberOfCorrectlyCheckedBoxes += 1
 
             for question in questions:
                 response = row[question]
                 if response == "true":
                     paragraphToQuestionsToVotesMap[paragraph][question] += 1
 
+    print "Passed Quality Control #2: " + str(numberOfCorrectlyCheckedBoxes)
+    print "Total Number of Responses: " + str(totalRows)
+
+with open('data/qc/realOutput/paragraphToVotes.csv', 'w') as csvfile:
+    fieldnames = ['paragraph', 'company'] + questions
+
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
+    for paragraph in paragraphToQuestionsToVotesMap:
+        row = {'paragraph': paragraph, 'company': paragraphToCompanyMap[paragraph]}
+        for question in questions:
+            votes = paragraphToQuestionsToVotesMap[paragraph][question]
+            row[question] = votes
+
+        writer.writerow(row)
 
 with open('data/qc/realOutput/paragraphToLabel.csv', 'w') as csvfile:
     fieldnames = ['paragraph','company'] + questions
