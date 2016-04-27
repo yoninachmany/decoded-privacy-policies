@@ -5,6 +5,10 @@
 
 When signing up for a product or service, people often agree to ridiculous things online, or even sign away rights they aren’t aware of, because they don’t take the time to read long Privacy Policies. Generally, policies are much better reading material for lawyers than for the people they are supposed to inform. This project will give consumers the gist of what they are agreeing to, and hopefully incentivize companies to make their policies more clear to their users.
 
+### Running the code
+From the base directory (https://github.com/yoninachmany/decoded-privacy-policies/), run the following commands:
+* `python src/qc.py` runs quality control as follows: it reads in the Final Report from `data/qc/sampleInput/`, checking whether or not people correctly answered a question that helps guard against randomly answering questions. Afterwards, it performs a majority vote system and writes the results to another csv that, for every paragraph, indicates the crowd's answer for the questions about the paragraph. 
+* `python src/aggregation.py` runs aggergation by combining paragraphs from the same company and writing that a company does or does not mention a certain issue, with a paragraph justifying the answer.
 
 ## 1. /data (5 total)
 **Raw data input (1)**
@@ -76,8 +80,6 @@ After meeting with our TA, we changed the design of the HIT (as described in det
 * If 4-5 people label a chunk with a given checkbox, we will check on it manually - don’t want automatically discount those 4-5 workers, but can’t be sure
 * If 3 or fewer workers agree on a checkbox, we assume that question isn't addressed in the chunk. 
 * If there is significant disagreement (many votes for several conflicting labels for a paragraph) we also give it a second pass
-
-Running `python src/qcAndAggregation/qcAndAggregation.py` will recreate `data/qcAndAggregation/output.csv`
 
 **Working aggregation (2)**
 
