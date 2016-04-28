@@ -83,21 +83,26 @@ with open('analysis/data/qc/realOutput/paragraphToLabel.csv', 'w') as csvfile:
 
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-    votesThrownOut = 0
+    votesKept = 0
+    allVotes = 0
 
     writer.writeheader()
     for paragraph in paragraphToQuestionsToVotesMap:
         row = {'paragraph': paragraph, 'company': paragraphToCompanyMap[paragraph]}
         for question in questions:
             votes = paragraphToQuestionsToVotesMap[paragraph][question]
+            allVotes += votes
             if votes >= 6:
                 row[question] = "Yes"
+                votesKept += votes
             elif votes == 5 or votes == 4:
                 row[question] = "Maybe"
+                votesKept += votes
             else:
                 row[question] = "No"
-                votesThrownOut += votes
 
         writer.writerow(row)
 
-    print "Votes Thrown Out: " + str(votesThrownOut)
+    print "Votes Kept: " + str(votesKept)
+    print "All Votes: " + str(allVotes)
+    print "Fraction of Votes Kept/All Votes: " + str(float(votesKept)/allVotes)
