@@ -83,6 +83,8 @@ with open('analysis/data/qc/realOutput/paragraphToLabel.csv', 'w') as csvfile:
 
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
+    votesThrownOut = 0
+
     writer.writeheader()
     for paragraph in paragraphToQuestionsToVotesMap:
         row = {'paragraph': paragraph, 'company': paragraphToCompanyMap[paragraph]}
@@ -94,5 +96,8 @@ with open('analysis/data/qc/realOutput/paragraphToLabel.csv', 'w') as csvfile:
                 row[question] = "Maybe"
             else:
                 row[question] = "No"
+                votesThrownOut += votes
 
         writer.writerow(row)
+
+    print "Votes Thrown Out: " + str(votesThrownOut)
