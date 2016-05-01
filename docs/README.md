@@ -1,5 +1,5 @@
 # decoded-privacy-policies
-> Decoded uses crowdsourcing to analyze and outline the contents of the Privacy Polices of several popular companies to shed light on what consumers are actually agreeing to.
+> Decoded uses crowdsourcing to analyze and outline the contents of the Privacy Policies of several popular companies to shed light on what consumers are actually agreeing to.
 
 ### The Problem
 
