@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Result', 'Number of People'],
+          ['Trustworthy',     766],
+          ['Not Trustworthy',      1077],
+        ]);
+
+        var data2 = google.visualization.arrayToDataTable([
+          ['Result', 'Questions'],
+          ['Correct',     1235],
+          ['Incorrect',      726],
+        ]);
+
+        var options = {
+          title: 'How Many Gold Standard Questions Were Trustworthy',
+          pieHole: 0.4,
+        };
+
+        var options2 = {
+          title: 'How Many Yes/No Questions Were Answered Correctly',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        var chart2 = new google.visualization.PieChart(document.getElementById('donutchart2'));
+        chart.draw(data, options);
+        chart2.draw(data2, options2);
+
+        var data3 = google.visualization.arrayToDataTable([
+        ["Result", "Trustworthy", "Not Trustworthy"],
+        ["Questions", 766, 1077],
+      ]);
+
+      var options3 = {
+        width: 600,
+        height: 400,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+      var chart3 = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart3.draw(data3, options3);
+
+      var data4 = google.visualization.arrayToDataTable([
+        ["Result", "Correct", "Incorrect"],
+        ["Questions", 1235, 726],
+      ]);
+
+      var options4 = {
+        width: 600,
+        height: 400,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+      var chart4 = new google.visualization.BarChart(document.getElementById("barchart_values_2"));
+      chart4.draw(data4, options4);
+
+      var data5 = google.visualization.arrayToDataTable([
+          ['Result', 'Number of People'],
+          ['Voted Correctly',     6428],
+          ['Voted Incorrectly',      605],
+        ]);
+
+        var options5 = {
+          title: 'How Many Votes Were Part of the Majority',
+          pieHole: 0.4,
+        };
+
+        var chart5 = new google.visualization.PieChart(document.getElementById('donutchart3'));
+        chart5.draw(data5, options5);
+
+        var data6 = google.visualization.arrayToDataTable([
+        ["Result", "Voted Correctly", "Voted Incorrectly"],
+        ["Questions", 6428, 605],
+      ]);
+
+      var options6 = {
+        width: 600,
+        height: 400,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+      var chart6 = new google.visualization.BarChart(document.getElementById("barchart_values_3"));
+      chart6.draw(data6, options6);
+
+      }
+    </script>
+
+  </head>
+  <body>
+    <div id="donutchart" style="width: 625px; height: 500px; float:left; padding: 0px;"></div>
+    <div id="barchart_values" style="width: 625px; height: 500px; float:left; padding: 0px;"></div>
+    <div id="donutchart2" style="width: 625px; height: 500px; float:left; padding: 0px;"></div> 
+    <div id="barchart_values_2" style="width: 625px; height: 500px; float:left; padding: 0px;"></div>
+    <div id="donutchart3" style="width: 625px; height: 500px; float:left; padding: 0px;"></div> 
+    <div id="barchart_values_3" style="width: 625px; height: 500px; float:left; padding: 0px;"></div>
+  </body>
+</html>
