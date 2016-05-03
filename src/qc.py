@@ -22,7 +22,7 @@ questions=["are_they_making_money_off_the_data",
 
 paragraphToCompanyMap = {}
 
-with open('analysis/data/qc/realInput/4.27Full.csv') as csvfile:
+with open('analysis/data/qc/realInput/FullReport2.csv') as csvfile:
     reader = csv.DictReader(csvfile)
     numberOfCorrectlyCheckedBoxes = 0
     totalRows = 0
